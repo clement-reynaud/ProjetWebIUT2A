@@ -1,7 +1,7 @@
 <?php
 
 require_once("Utilisateur.php");
-require_once("../config/Connection.php");
+require_once("../../config/Connection.php");
 
 class UtilisateurGateway
 {

@@ -1,6 +1,6 @@
 <?php
 require_once ("../config/Config.php");
-require_once("../Modèle/NewsGateway.php");
+require_once("../DAL/Gateway/NewsGateway.php");
 
 ?>
 
@@ -60,8 +60,7 @@ require_once("../Modèle/NewsGateway.php");
 
         <p>Messages de la communauté :
             <?php
-                $ngt= new NewsGateway($con);
-                echo $ngt->NbNews();
+                echo $nbNews;
             ?>
         </p>
     </footer>

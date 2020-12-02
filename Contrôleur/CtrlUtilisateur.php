@@ -1,5 +1,6 @@
 <?php
 
+require_once ("../Modèle/ModeleNews.php");
 
 class CtrlUtilisateur
 {
@@ -47,6 +48,11 @@ class CtrlUtilisateur
     }
 
     function pagePrincipale(){
+
+        $m = new ModeleNews();
+
+        $nbNews = $m->getNbNews();
+
         require ("../Vue/PagePrincipale.php");
     }
 

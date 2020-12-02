@@ -1,7 +1,7 @@
 <?php
 
-require_once("News.php");
-require_once("../config/Connection.php");
+require_once("../Modèle/News.php");
+require_once("../config/Config.php");
 
 class NewsGateway
 {
