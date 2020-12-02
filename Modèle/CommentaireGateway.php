@@ -1,14 +1,14 @@
 <?php
 
-require_once("../Modèle/Utilisateur.php");
-require_once("../Modèle/Connection.php");
+require_once("Commentaire.php");
+require_once("../config/Connection.php");
 
-class UtilisateurGateway
+class CommentaireGateway
 {
     protected $con;
 
     /**
-     * UtilisateurGateway constructor.
+     * CommentaireGateway constructor.
      * @param $con
      */
     public function __construct($con)
@@ -31,4 +31,5 @@ class UtilisateurGateway
     {
         $this->con = $con;
     }
+
 }

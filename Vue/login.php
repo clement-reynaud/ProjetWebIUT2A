@@ -10,7 +10,7 @@
     <form action="../config/validation_connexion_utilisateur.php" method="post">
         <div>
             <label>Login</label>
-            <input type="text" name="login">
+            <input type="text" name="pseudo">
         </div>
         <div>
             <label>MDP</label>
@@ -23,6 +23,7 @@
 
         <input type="hidden" name="action" value="validation_connexion_utilisateur">
     </form>
+    <p>Pas de compte, créer en un <a href="creationCompte.php">ici</a></p>
 </div>
 </body>
 </html>

@@ -1,3 +1,9 @@
+<?php
+require_once ("../config/Config.php");
+require_once("../Modèle/NewsGateway.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +17,23 @@
             <li>
                 <a>Dernières news</a>
             </li>
-            <li>
-                <a href="">Login</a>
-            </li>
+            <?php
+            if(!isset($_SESSION["pseudo"])){
+               print "<li>
+                        <a href=\"login.php\">Login</a>
+                    </li>";
+            }
+            ?>
             <li>
                 <a>Recherche</a>
             </li>
+            <?php
+            if(isset($_SESSION["pseudo"])){
+                print "<li>
+                        <a href=\"deconnexion.php\">Deconnexion</a>
+                    </li>";
+            }
+            ?>
         </ul>
     </header>
     <div id="page">
@@ -43,19 +60,8 @@
 
         <p>Messages de la communauté :
             <?php
-            require_Once("../Contrôleur/NewsGateway.php");
-            $user= 'root';
-            $pass='';
-            $dsn='mysql:host=localhost;dbname=projet';
-            try{
-                $con=new Connection($dsn,$user,$pass);
-            }
-            catch( PDOException $Exception ) {
-                echo 'erreur';
-                echo $Exception->getMessage();
-            }
-            $ngt=new NewsGateway($con);
-            echo $ngt->NbNews();
+                $ngt= new NewsGateway($con);
+                echo $ngt->NbNews();
             ?>
         </p>
     </footer>

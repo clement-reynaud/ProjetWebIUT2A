@@ -1,6 +1,9 @@
 <?php
 
-class Validation
+require_once ("../config/Connection.php");
+require_once ("../Modèle/UtilisateurGateway.php");
+
+class ValidationForm
 {
 
     static function action(){
@@ -8,7 +11,7 @@ class Validation
     }
 
     static function validate(){
-        $action = Validation::action();
+        $action = ValidationForm::action();
 
         switch ($action){
             case "validation_add_utilisateur":
@@ -18,26 +21,32 @@ class Validation
                 self::validate_connexion_utilisateur();
                 break;
             default:
-                $dVueErreur[] = "Validation incorectement utilisé";
+                $dVueErreur[] = "ValidationForm incorectement utilisé";
                 require("../Vue/erreur.php");
         }
     }
 
     static function validate_add_utilisateur(){
 
+        $ugt = new UtilisateurGateway($con);
+
+        if(!$ugt->verifyPseudo($_POST["pseudo"])){
+            $dVueErreur[] = "login deja existant";
+        }
+
         if ($_POST["mdp"] != $_POST["confirm_mdp"]) {
             $dVueErreur[] = "mot de passe non confirmé";
         }
 
-        if ($_POST["login"] == "" || !isset($_POST["login"])) {
+        if ($_POST["pseudo"] == "" || !isset($_POST["pseudo"])) {
             $dVueErreur[] = "pas de nom";
         }
 
-        if ($_POST["login"] != filter_var($_POST["login"], FILTER_SANITIZE_STRING)) {
-            $dVueErreur[] = "login erroné";
+        if ($_POST["pseudo"] != filter_var($_POST["pseudo"], FILTER_SANITIZE_STRING)) {
+            $dVueErreur[] = "pseudo erroné";
         }
 
-        if ($_POST["mdp"] == "" || !isset($_POST["login"])) {
+        if ($_POST["mdp"] == "" || !isset($_POST["pseudo"])) {
             $dVueErreur[] = "pas de mdp";
         }
 
@@ -47,7 +56,8 @@ class Validation
 
         require("../Vue/erreur.php");
 
-        //AJOUT NOUVELLE UTILISATEUR BDD
+        $_POST["action"] = "add_utilisateur";
+        //$ctrl = new CtrlBase();
 
         header("location: ../Vue/PagePrincipale.php");
     }
@@ -58,4 +68,4 @@ class Validation
 
 }
 
-Validation::validate();
+ValidationForm::validate();

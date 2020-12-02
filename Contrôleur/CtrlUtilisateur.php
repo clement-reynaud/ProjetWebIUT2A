@@ -4,13 +4,20 @@
 class CtrlUtilisateur
 {
     function __construct(){
+        session_start();
+        session_unset();
         try{
             $dVueErreur=array();
 
-            $action=$_REQUEST['action'];
+            if(isset($_REQUEST['action'])){
+                $action=$_REQUEST['action'];
+            }
+            else{
+                $action = null;
+            }
 
             switch ($action){
-                case NULL:
+                case null:
                     $this->pagePrincipale();
                     break;
                 case "add_comm":
@@ -18,6 +25,9 @@ class CtrlUtilisateur
                     break;
                 case "rech_date":
                     $this->rechDate();
+                    break;
+                case "add_utilisateur":
+                    $this->addUtilisateur();
                     break;
                 default:
                     $dVueErreur[] = "erreur appel php";
@@ -37,7 +47,7 @@ class CtrlUtilisateur
     }
 
     function pagePrincipale(){
-
+        require ("../Vue/PagePrincipale.php");
     }
 
     function rechDate(){
@@ -45,6 +55,10 @@ class CtrlUtilisateur
     }
 
     function addCommentaire(){
+
+    }
+
+    private function addUtilisateur(){
 
     }
 
