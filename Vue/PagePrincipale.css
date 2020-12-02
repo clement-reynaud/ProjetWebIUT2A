@@ -1,0 +1,40 @@
+body{
+    width: 99%;
+}
+.bandeau li{
+    display: inline-block;
+}
+
+.bandeau{
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: #ed969e;
+    width: 97.5%;
+    align-self: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: "MV Boli";
+}
+.bandeau a{
+    text-align: center;
+    color: darkmagenta;
+    display: block;
+    text-decoration: none;
+    padding: 30px ;
+    margin: 10px;
+    border-radius: 5px;
+}
+.bandeau a:hover{
+    background-color: #0062cc;
+    color: #d1ecf1;
+    border-color: #002752;
+}
+
+div#page{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 120px;
+    background-color: #d1ecf1;
+}

@@ -1,0 +1,8 @@
+Vues:
+-Page Principale
+-Connexion
+-Erreur
+-Page d'aministration
+-Resultat Recherche
+-Ajout commentaire
+-Ajout News
