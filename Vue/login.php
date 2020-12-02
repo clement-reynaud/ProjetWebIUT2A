@@ -7,7 +7,7 @@
 <body>
 <div>
     <h2>Connexion :</h2>
-    <form action="../config/validation_connexion_utilisateur.php" method="post">
+    <form action="index.php" method="post">
         <div>
             <label>Login</label>
             <input type="text" name="pseudo">
@@ -21,9 +21,9 @@
             <input type="reset" value="Reset">
         </div>
 
-        <input type="hidden" name="action" value="validation_connexion_utilisateur">
+        <input type="hidden" name="action" value="validation_login">
     </form>
-    <p>Pas de compte, créer en un <a href="creationCompte.php">ici</a></p>
+    <p>Pas de compte, créer en un <a href="index.php?action=add_utilisateur">ici</a></p>
 </div>
 </body>
 </html>

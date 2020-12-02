@@ -1,6 +1,8 @@
 <?php
 
 require_once ("../Modèle/ModeleNews.php");
+require_once ("../Modèle/ModeleUtilisateur.php");
+require_once ("../config/ValidationForm.php");
 
 class CtrlUtilisateur
 {
@@ -9,7 +11,6 @@ class CtrlUtilisateur
         session_unset();
         try{
             $dVueErreur=array();
-
             if(isset($_REQUEST['action'])){
                 $action=$_REQUEST['action'];
             }
@@ -27,8 +28,18 @@ class CtrlUtilisateur
                 case "rech_date":
                     $this->rechDate();
                     break;
+                case "login":
+                    $this->login();
+                    break;
+                case "validation_login":
+                    $this->validateLogin();
+                    require ("../Vue/erreur.php");
+                    break;
                 case "add_utilisateur":
                     $this->addUtilisateur();
+                    break;
+                case "validation_add_utilisateur":
+                    $this->validateaddUtilisateur();
                     break;
                 default:
                     $dVueErreur[] = "erreur appel php";
@@ -50,7 +61,6 @@ class CtrlUtilisateur
     function pagePrincipale(){
 
         $m = new ModeleNews();
-
         $nbNews = $m->getNbNews();
 
         require ("../Vue/PagePrincipale.php");
@@ -64,8 +74,31 @@ class CtrlUtilisateur
 
     }
 
-    private function addUtilisateur(){
+    function addUtilisateur(){
+        require ("../Vue/creationCompte.php");
+    }
 
+    function validateaddUtilisateur()
+    {
+        ValidationForm::validate();
+
+        $m = new ModeleUtilisateur();
+
+        $m->addUtilisateur($_POST["pseudo"],$_POST["mdp"]);
+        print ("compte crée");
+    }
+
+    private function login()
+    {
+        require ("login.php");
+    }
+
+    private function validateLogin()
+    {
+        ValidationForm::validate();
+
+        print("loged in" . $_POST["pseudo"] . " " . $_POST["mdp"]);
+        //Login as utilisateur
     }
 
 }

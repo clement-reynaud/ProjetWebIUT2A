@@ -7,7 +7,7 @@
 <body>
 <div>
     <h2>Creation de compte :</h2>
-    <form action="../config/ValidationForm.php" method="post">
+    <form action="index.php" method="post">
         <div>
             <label>Login</label>
             <input type="text" name="pseudo">

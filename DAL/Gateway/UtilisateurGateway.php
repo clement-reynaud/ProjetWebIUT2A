@@ -1,7 +1,7 @@
 <?php
 
-require_once("Utilisateur.php");
-require_once("../../config/Connection.php");
+require_once("../Modèle/Utilisateur.php");
+require_once("../config/Connection.php");
 
 class UtilisateurGateway
 {
@@ -45,5 +45,27 @@ class UtilisateurGateway
         else{
             return false;
         }
+    }
+
+    public function verifMdp(string $mdp) : bool{
+        $query="SELECT COUNT(*) FROM UTILISATEURS WHERE :mdp=mdp";
+        $this->con->executeQuery($query, array(
+            ':mdp'=>array($mdp,PDO::PARAM_STR),
+        ));
+
+        if(intval($this->con->getResults()[0]['COUNT(*)']) == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function addUtilisateur(string $pseudo, string $mdp){
+        $query="INSERT INTO UTILISATEURS (`pseudo`, `mdp`) VALUES (:pseudo,:mdp)";
+        $this->con->executeQuery($query,array(
+            ':pseudo'=>array($pseudo,PDO::PARAM_STR),
+            ':mdp'=>array($mdp,PDO::PARAM_STR)
+        ));
     }
 }

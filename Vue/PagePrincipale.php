@@ -20,7 +20,7 @@ require_once("../DAL/Gateway/NewsGateway.php");
             <?php
             if(!isset($_SESSION["pseudo"])){
                print "<li>
-                        <a href=\"login.php\">Login</a>
+                        <a href=\"index.php?action=login\">Login</a>
                     </li>";
             }
             ?>
