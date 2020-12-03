@@ -38,15 +38,12 @@ class NewsGateway
         return intval($this->con->getResults()[0]['COUNT(*)']);
     }
 
-    public function getNews(int $premiereNews, int $NbNews) : array{
+    public function getAllNews() : array{
 
-        $query="SELECT * FROM NEWS ORDER BY DATE_CREE DESC LIMIT :first, :last ";
-        $this->con->executeQuery($query, array(
-            ':first'=>array($premiereNews, PDO::PARAM_STR),
-            ':last'=>array($NbNews, PDO::PARAM_STR)
-        ));
+        $query="SELECT * FROM NEWS";
+        $this->con->executeQuery($query, array());
 
-        $res=$this->con->getResult();
+        $res=$this->con->getResults();
         Return $res;
     }
 }

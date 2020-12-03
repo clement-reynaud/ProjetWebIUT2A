@@ -62,6 +62,7 @@ class CtrlUtilisateur
 
         $m = new ModeleNews();
         $nbNews = $m->getNbNews();
+        $news = $m->getNews();
 
         require ("../Vue/PagePrincipale.php");
     }

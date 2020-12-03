@@ -37,23 +37,14 @@ require_once("../DAL/Gateway/NewsGateway.php");
         </ul>
     </header>
     <div id="page">
-        <p>e
-            f
-            zef
-
-            ezf
-            ezf
-            zef
-            ezf
-            ze
-            fez
-            fze
-            f
-            ezf
-            ef
-            ef
-            hé <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>test
-        </p>
+        <?php
+        foreach ($news as $val)
+        print "
+        <p style='border: solid'>
+            " . $val["titre"] . " | " . $val["date_cree"] . "<br>
+            " . $val["contenu"] . "
+        </p>"
+        ?>
     </div>
     <footer>
         <p>Vos messages :</p>

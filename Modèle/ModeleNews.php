@@ -20,8 +20,8 @@ class ModeleNews{
         return $this->ngt->NbNews();
     }
 
-    function getNews($nbNews){
-        return $this->ngt->getNews();
+    function getNews(){
+        return $this->ngt->getAllNews();
     }
 }
 
