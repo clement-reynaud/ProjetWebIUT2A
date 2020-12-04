@@ -34,6 +34,14 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -44,23 +52,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Contrôleur" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\wamp64\www\projet\Contrôleur" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programme(x86)\wamp64\www\ProjetWebIUT2A\Modèle\Métier" />
       <recent name="D:\wamp64\www\projet\DAL\Gateway" />
       <recent name="D:\wamp64\www\projet\DAL" />
       <recent name="D:\wamp64\www\projet\Vue" />
       <recent name="D:\wamp64\www\projet\Modèle" />
-      <recent name="D:\wamp64\www\projet\config" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\wamp64\www\projet\Contrôleur" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -79,6 +89,7 @@
       <workItem from="1606953194904" duration="1766000" />
       <workItem from="1606986284432" duration="149000" />
       <workItem from="1606994031762" duration="739000" />
+      <workItem from="1607085349923" duration="6662000" />
     </task>
     <task id="LOCAL-00001" summary="Avancé dans le MVC">
       <created>1606907512209</created>
@@ -118,10 +129,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="Finalisation de la création de compte" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1606906101757">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser" timestamp="1607091625229">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1606906101757" />
+    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser/2560.0.1536.832/0.0.2560.1400@0.0.2560.1400" timestamp="1607091625229" />
     <state x="390" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606897264447">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -130,10 +142,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606902144538" />
-    <state x="595" y="135" key="NewPhpClassDialog" timestamp="1606864769039">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="992" y="229" key="NewPhpClassDialog" timestamp="1607091583861">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="595" y="135" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1606864769039" />
+    <state x="992" y="229" key="NewPhpClassDialog/2560.0.1536.832/0.0.2560.1400@0.0.2560.1400" timestamp="1607091583861" />
     <state x="604" y="336" key="NewPhpFileDialog" timestamp="1606922694810">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

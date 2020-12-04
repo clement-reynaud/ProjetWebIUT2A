@@ -1,6 +1,6 @@
 <?php
 
-require_once("../Modèle/News.php");
+require_once("../Modèle/Métier/News.php");
 require_once("../config/Config.php");
 
 class NewsGateway

@@ -26,7 +26,10 @@
         </div>
 
         <input type="hidden" name="action" value="validation_add_utilisateur">
+        <input type="button" value="Retour" onclick="history.go(-1)">
+
     </form>
+
 </div>
 </body>
 </html>

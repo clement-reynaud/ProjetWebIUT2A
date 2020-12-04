@@ -20,10 +20,12 @@
             <input type="submit" value="Submit">
             <input type="reset" value="Reset">
         </div>
-
         <input type="hidden" name="action" value="validation_login">
     </form>
     <p>Pas de compte, créer en un <a href="index.php?action=add_utilisateur">ici</a></p>
+    <form>
+        <input type="button" value="Retour" onclick="history.go(-1)">
+    </form>
 </div>
 </body>
 </html>

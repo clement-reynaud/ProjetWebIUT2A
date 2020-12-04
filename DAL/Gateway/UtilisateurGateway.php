@@ -1,6 +1,6 @@
 <?php
 
-require_once("../Modèle/Utilisateur.php");
+require_once("../Modèle/Métier/Utilisateur.php");
 require_once("../config/Connection.php");
 
 class UtilisateurGateway
