@@ -16,7 +16,7 @@ class ModeleUtilisateur{
 
     public function verifyMdp($mdp)
     {
-        return $this->ugt->verifMdp($mdp);
+        return $this->ugt->verifyMdp($mdp);
     }
 
     public function addUtilisateur($pseudo,$login){

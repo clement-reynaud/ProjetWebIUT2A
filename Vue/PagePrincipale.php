@@ -25,7 +25,16 @@ require_once("../DAL/Gateway/NewsGateway.php");
             }
             ?>
             <li>
-                <a>Recherche</a>
+                <a>
+                    <form action="index.php">
+                        <input type="date" name="date">
+                        <input type="submit">
+                        <input type="hidden" name="action" value="rech_date">
+                    </form>
+                </a>
+            </li>
+            <li>
+
             </li>
             <?php
             if(isset($_SESSION["pseudo"])){
@@ -38,6 +47,7 @@ require_once("../DAL/Gateway/NewsGateway.php");
     </header>
     <div id="page">
         <?php
+        print $titrepage;
         foreach ($news as $val)
         print "
         <p style='border: solid'>

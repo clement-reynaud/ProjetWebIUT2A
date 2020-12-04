@@ -61,6 +61,8 @@ class CtrlUtilisateur
     function pagePrincipale(){
 
         $m = new ModeleNews();
+
+        $titrepage = "Toutes les news:";
         $nbNews = $m->getNbNews();
         $news = $m->getNews();
 
@@ -69,6 +71,22 @@ class CtrlUtilisateur
 
     function rechDate(){
 
+        $m = new ModeleNews();
+
+        if(isset($_REQUEST["date"])){
+            $date = $_REQUEST["date"];
+
+
+            $titrepage = "Resultat Recherche :";
+            $nbNews = $m->getNbNews();
+            $news = $m->getNewsAtDate($date);
+
+            require ("../Vue/PagePrincipale.php");
+        }
+        else{
+            $dVueErreur[] = "erreur date";
+            require ("../Vue/erreur.php");
+        }
     }
 
     function addCommentaire(){

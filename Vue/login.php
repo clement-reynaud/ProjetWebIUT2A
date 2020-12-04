@@ -23,7 +23,7 @@
 
         <input type="hidden" name="action" value="validation_login">
     </form>
-    <p>Pas de compte, créer en un <a href="index.php?action=add_utilisateur">ici</a></p>
+    <p>Pas de compte, créer en un <a href="index.php?action=add_news">ici</a></p>
 </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-require_once("Commentaire.php");
+require_once("../Modèle/Commentaire.php");
 require_once("../config/Connection.php");
 
 class CommentaireGateway

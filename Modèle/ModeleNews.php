@@ -23,6 +23,10 @@ class ModeleNews{
     function getNews(){
         return $this->ngt->getAllNews();
     }
+
+    function getNewsAtDate($date){
+        return $this->ngt->getNewsAtDate($date);
+    }
 }
 
 

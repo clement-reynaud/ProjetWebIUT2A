@@ -47,7 +47,7 @@ class UtilisateurGateway
         }
     }
 
-    public function verifMdp(string $mdp) : bool{
+    public function verifyMdp(string $mdp) : bool{
         $query="SELECT COUNT(*) FROM UTILISATEURS WHERE :mdp=mdp";
         $this->con->executeQuery($query, array(
             ':mdp'=>array($mdp,PDO::PARAM_STR),
