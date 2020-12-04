@@ -41,6 +41,9 @@ class CtrlUtilisateur
                 case "validation_add_utilisateur":
                     $this->validateaddUtilisateur();
                     break;
+                case "supp_comm":
+                    $this->suppCommentaire();
+                    break;
                 default:
                     $dVueErreur[] = "erreur appel php";
                     require ("../Vue/erreur.php");
@@ -118,6 +121,12 @@ class CtrlUtilisateur
 
         print("loged in" . $_POST["pseudo"] . " " . $_POST["mdp"]);
         //Login as utilisateur
+    }
+
+    private function suppCommentaire()
+    {
+        $m=new ModeleCommentaire();
+
     }
 
 }

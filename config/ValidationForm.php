@@ -32,27 +32,27 @@ class ValidationForm
         $m = new ModeleUtilisateur();
 
         if(!$m->verifyPseudo($_POST["pseudo"])){
-            $dVueErreur[] = "login deja existant";
+            $dVueErreur[] = "Ce login existe deja.";
         }
 
         if ($_POST["mdp"] != $_POST["confirm_mdp"]) {
-            $dVueErreur[] = "mot de passe non confirmé";
+            $dVueErreur[] = "Veuillez confirmer votre mot de passe.";
         }
 
         if ($_POST["pseudo"] == "" || !isset($_POST["pseudo"])) {
-            $dVueErreur[] = "pas de pseudo";
+            $dVueErreur[] = "Veuillez entrer un pseudo.";
         }
 
         if ($_POST["pseudo"] != filter_var($_POST["pseudo"], FILTER_SANITIZE_STRING)) {
-            $dVueErreur[] = "pseudo erroné";
+            $dVueErreur[] = "Ce pseudo est erroné.";
         }
 
         if ($_POST["mdp"] == "" || !isset($_POST["mdp"])) {
-            $dVueErreur[] = "pas de mdp";
+            $dVueErreur[] = "Veuillez insérer votre mot de passe.";
         }
 
         if ($_POST["mdp"] != filter_var($_POST["mdp"], FILTER_SANITIZE_STRING)) {
-            $dVueErreur[] = "mdp erroné";
+            $dVueErreur[] = "Ce mot de passe est erroné.";
         }
 
         if(isset($dVueErreur[0])){
@@ -64,23 +64,23 @@ class ValidationForm
         $m = new ModeleUtilisateur();
 
         if ($_POST["pseudo"] == "" || !isset($_POST["pseudo"])) {
-            $dVueErreur[] = "pas de pseudo";
+            $dVueErreur[] = "Veuillez entrer un pseudo.";
         }
 
         if ($_POST["pseudo"] != filter_var($_POST["pseudo"], FILTER_SANITIZE_STRING)) {
-            $dVueErreur[] = "pseudo erroné";
+            $dVueErreur[] = "Ce pseudo est erroné.";
         }
 
         if ($_POST["mdp"] == "" || !isset($_POST["mdp"])) {
-            $dVueErreur[] = "pas de mdp";
+            $dVueErreur[] = "Veuillez entrer votre mot de passe.";
         }
 
         if ($_POST["mdp"] != filter_var($_POST["mdp"], FILTER_SANITIZE_STRING)) {
-            $dVueErreur[] = "mdp erroné";
+            $dVueErreur[] = "Ce mot de passe est erroné";
         }
 
         if($m->verifyPseudo($_POST["pseudo"])&&$m->verifyMdp($_POST["mdp"])){
-            $dVueErreur[] = "combinaison pseudo/mdp n'existe pas";
+            $dVueErreur[] = "La combinaison du pseudo et du mot de passe n'existe pas";
         }
 
         if(isset($dVueErreur[0])){

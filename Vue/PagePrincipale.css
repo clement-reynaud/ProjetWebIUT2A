@@ -1,11 +1,11 @@
 body{
     width: 99%;
 }
-.bandeau li{
+#bandeau li{
     display: inline-block;
 }
 
-.bandeau{
+#bandeau{
     overflow: hidden;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@ body{
     margin-bottom: 10px;
     font-family: "MV Boli";
 }
-.bandeau a{
+#bandeau a{
     text-align: center;
     color: darkmagenta;
     display: block;
@@ -26,7 +26,7 @@ body{
     margin: 10px;
     border-radius: 5px;
 }
-.bandeau a:hover{
+#bandeau a:hover{
     background-color: #0062cc;
     color: #d1ecf1;
     border-color: #002752;
@@ -37,4 +37,9 @@ div#page{
     margin-right: 0;
     margin-top: 120px;
     background-color: #d1ecf1;
+}
+
+#titreNews{
+    color: darkorange;
+
 }

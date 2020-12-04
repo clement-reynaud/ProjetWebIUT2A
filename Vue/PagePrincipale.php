@@ -13,7 +13,7 @@ require_once("../DAL/Gateway/NewsGateway.php");
 </head>
 <body>
     <header>
-        <ul class="bandeau">
+        <ul id="bandeau">
             <li>
                 <a>Dernières news</a>
             </li>
@@ -50,16 +50,24 @@ require_once("../DAL/Gateway/NewsGateway.php");
         print $titrepage;
         foreach ($news as $val)
         print "
-        <p style='border: solid'>
-            " . $val["titre"] . " | " . $val["date_cree"] . "<br>
+        <div style='border: solid'>
+            <h2 id='titreNews'>
+            " . $val["titre"] . "
+             </h2>
+             <p>
+             " . $val["date_cree"] . "<br>
+             </p>
+             <p>
             " . $val["contenu"] . "
-        </p>"
+            </p>
+        </div>
+        <button><a href='ajoutNews.php'></a> </button>"
         ?>
     </div>
     <footer>
         <p>Vos messages :</p>
 
-        <p>Messages de la communauté :
+        <p>News :
             <?php
                 echo $nbNews;
             ?>

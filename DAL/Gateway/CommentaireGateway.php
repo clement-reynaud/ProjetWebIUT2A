@@ -1,6 +1,6 @@
 <?php
 
-require_once("../Modèle/Commentaire.php");
+require_once("../Modèle/Métier/Commentaire.php");
 require_once("../config/Connection.php");
 
 class CommentaireGateway
@@ -30,6 +30,22 @@ class CommentaireGateway
     public function setCon($con)
     {
         $this->con = $con;
+    }
+
+    public function addCommentaire(int $auteurid, int $newsid, string $contenu){
+        $query="INSERT INTO COMMENTAIRES (`auteurid`, `newsid`, `contenu`) VALUES (:auteurid,:newsid,:contenu)";
+        $this->con->executeQuery($query,array(
+            ':auteurid'=>array($auteurid,PDO::PARAM_INT),
+            ':newsid'=>array($newsid,PDO::PARAM_INT),
+            ':contenu'=>array($contenu,PDO::PARAM_STR)
+        ));
+    }
+
+    public function suppCommentaire(int $id){
+        $query="DELETE FROM COMMENTAIRES WHERE :id=id";
+        $this->con->executeQuery($query,array(
+            ':id'=>array($id,PDO::PARAM_INT)
+        ));
     }
 
 }
