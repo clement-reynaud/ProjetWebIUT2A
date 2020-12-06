@@ -48,4 +48,29 @@ class CommentaireGateway
         ));
     }
 
+    public function getCommByNewsId($id){
+        $query="SELECT * FROM `commentaires` WHERE newsid = :id";
+        $this->con->executeQuery($query,array(
+            ':id'=>array($id,PDO::PARAM_INT)
+        ));
+
+        $res = [];
+
+        foreach ($this->con->getResults() as $val){
+            $res[] = new Commentaire($val["id"],$val["contenu"],$val["newsid"],$val["auteurid"],$this->getCommAuthor($val["auteurid"]));
+        }
+
+        return $res;
+
+    }
+
+    public function getCommAuthor($id){
+        $query="SELECT u.pseudo FROM commentaires c,utilisateurs u WHERE c.auteurid = u.id AND c.auteurid=:id";
+        $this->con->executeQuery($query,array(
+            ':id'=>array($id,PDO::PARAM_INT)
+        ));
+
+        return $this->con->getResults()[0]["pseudo"];
+    }
+
 }

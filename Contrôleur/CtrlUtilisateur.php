@@ -2,13 +2,13 @@
 
 require_once ("../Modèle/ModeleNews.php");
 require_once ("../Modèle/ModeleUtilisateur.php");
+require_once ("../Modèle/ModeleCommentaire.php");
 require_once ("../config/ValidationForm.php");
 
 class CtrlUtilisateur
 {
     function __construct(){
         session_start();
-        session_unset();
         try{
             $dVueErreur=array();
             if(isset($_REQUEST['action'])){
@@ -35,6 +35,9 @@ class CtrlUtilisateur
                     $this->validateLogin();
                     require ("../Vue/erreur.php");
                     break;
+                case "deconnexion":
+                    $this->deconnexion();
+                    break;
                 case "add_utilisateur":
                     $this->addUtilisateur();
                     break;
@@ -44,13 +47,17 @@ class CtrlUtilisateur
                 case "supp_comm":
                     $this->suppCommentaire();
                     break;
+                case "voir_commentaire":
+                    $this->voirCommentaire();
+                    break;
                 default:
                     $dVueErreur[] = "erreur appel php";
                     require ("../Vue/erreur.php");
             }
         }
         catch (PDOException $e){
-            $dVueErreur[] = "erreur BD levé";
+
+            $dVueErreur[] = "erreur BD levé: <br>" . $e->getMessage();
             require ("../Vue/erreur.php");
         }
         catch (Exception $e){
@@ -75,7 +82,6 @@ class CtrlUtilisateur
     function rechDate(){
 
         $m = new ModeleNews();
-
         if(isset($_REQUEST["date"])){
             $date = $_REQUEST["date"];
 
@@ -119,8 +125,18 @@ class CtrlUtilisateur
     {
         ValidationForm::validate();
 
-        print("loged in" . $_POST["pseudo"] . " " . $_POST["mdp"]);
-        //Login as utilisateur
+        $_SESSION["pseudo"] = $_POST["pseudo"];
+        $_SESSION["mdp"] = $_POST["mdp"];
+
+        $this->pagePrincipale();
+    }
+
+    private function deconnexion()
+    {
+        unset($_SESSION["pseudo"]);
+        session_destroy();
+
+        $this->pagePrincipale();
     }
 
     private function suppCommentaire()
@@ -128,5 +144,22 @@ class CtrlUtilisateur
         $m=new ModeleCommentaire();
 
     }
+
+    private function voirCommentaire()
+    {
+        $m1 = new ModeleNews();
+        $m2 = new ModeleCommentaire();
+
+        $n = $m1->getNewsById($_REQUEST["newsid"]);
+        $titrepage = "Commentaire :";
+        $nbNews = $m1->getNbNews();
+        $news[] = $n;
+        $comm = $m2->getComm($n->getId());
+
+
+        require ("../Vue/PagePrincipale.php");
+
+    }
+
 
 }

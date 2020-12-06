@@ -58,7 +58,12 @@ class NewsGateway
         $query="SELECT * FROM NEWS";
         $this->con->executeQuery($query, array());
 
-        $res=$this->con->getResults();
+        $res = [];
+
+        foreach ($this->con->getResults() as $val){
+          $res[] = new News($val["id"],$val["titre"],$val["contenu"],$val["date_cree"]);
+        }
+
         Return $res;
     }
 
@@ -79,9 +84,24 @@ class NewsGateway
             ":date2"=>array($date2,PDO::PARAM_STR)
         ));
 
-        $res=$this->con->getResults();
+        $res=[];
+
+        foreach ($this->con->getResults() as $val){
+            $res[] = new News($val["id"],$val["titre"],$val["contenu"],$val["date_cree"]);
+        }
 
         return $res;
+    }
 
+    public function getNewsById($id) : News{
+        $query="SELECT * FROM news WHERE id=:id";
+
+        $this->con->executeQuery($query,array(
+            ":id"=>array($id,PDO::PARAM_INT)
+        ));
+
+        $n = $this->con->getResults()[0];
+
+        return new News($n["id"],$n["titre"],$n["contenu"],$n["date_cree"]);
     }
 }

@@ -12,6 +12,7 @@ class ModeleCommentaire
      */
     public function __construct()
     {
+        require ("../config/Config.php");
         $this->cgt = new CommentaireGateway($con);
     }
 
@@ -21,6 +22,10 @@ class ModeleCommentaire
 
     function suppCommentaire(int $id){
         $this->cgt->suppCommentaire($id);
+    }
+
+    function getComm($newsid){
+        return $this->cgt->getCommByNewsId($newsid);
     }
 
 }

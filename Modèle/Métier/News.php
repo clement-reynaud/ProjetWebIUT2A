@@ -87,4 +87,6 @@ class News
     {
         $this->date_cree = $date_cree;
     }
+
+
 }

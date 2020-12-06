@@ -7,6 +7,7 @@ class Commentaire
     protected $contenu;
     protected $newsid;
     protected $auteurid;
+    protected $auteur;
 
     /**
      * Commentaire constructor.
@@ -14,13 +15,15 @@ class Commentaire
      * @param $contenu
      * @param $newsid
      * @param $auteurid
+     * @param $auteur
      */
-    public function __construct($id, $contenu, $newsid, $auteurid)
+    public function __construct($id, $contenu, $newsid, $auteurid, $auteur)
     {
         $this->id = $id;
         $this->contenu = $contenu;
         $this->newsid = $newsid;
         $this->auteurid = $auteurid;
+        $this->auteur = $auteur;
     }
 
     /**
@@ -86,5 +89,22 @@ class Commentaire
     {
         $this->auteurid = $auteurid;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * @param mixed $auteur
+     */
+    public function setAuteur($auteur)
+    {
+        $this->auteur = $auteur;
+    }
+
 
 }

@@ -15,15 +15,8 @@ require_once("../DAL/Gateway/NewsGateway.php");
     <header>
         <ul id="bandeau">
             <li>
-                <a>Dernières news</a>
+                <a href="index.php?action=">Acceuil</a>
             </li>
-            <?php
-            if(!isset($_SESSION["pseudo"])){
-               print "<li>
-                        <a href=\"index.php?action=login\">Login</a>
-                    </li>";
-            }
-            ?>
             <li>
                 <a>
                     <form action="index.php">
@@ -33,36 +26,66 @@ require_once("../DAL/Gateway/NewsGateway.php");
                     </form>
                 </a>
             </li>
-            <li>
-
-            </li>
             <?php
-            if(isset($_SESSION["pseudo"])){
+            if(!isset($_SESSION["pseudo"])){
                 print "<li>
-                        <a href=\"deconnexion.php\">Deconnexion</a>
+                        <a href=\"index.php?action=login\">Login</a>
+                    </li>";
+            }
+            else{
+                print "<li>
+                        <a href='index.php?action=deconnexion'>Deconnexion</a>
                     </li>";
             }
             ?>
         </ul>
+        <?php
+        if(isset($_SESSION["pseudo"])){
+            print "Connecté en tant que :" . $_SESSION["pseudo"];
+        }
+        else{
+            print "test";
+        }
+        ?>
     </header>
     <div id="page">
         <?php
-        print $titrepage;
-        foreach ($news as $val)
-        print "
-        <div style='border: solid'>
-            <h2 id='titreNews'>
-            " . $val["titre"] . "
-             </h2>
-             <p>
-             " . $val["date_cree"] . "<br>
-             </p>
-             <p>
-            " . $val["contenu"] . "
-            </p>
-        </div>
-        <button><a href='ajoutNews.php'></a> </button>"
+        print "<h1>" . $titrepage . "</h1>";
+
+        //Boucle d'affichage des news actuelles
+        foreach ($news as $val){
+            print "
+            <div style='border: solid; margin: 10px'>
+                <h2 id='titreNews'>
+                " . $val->getTitre() . "
+                 </h2>
+                 <p>
+                 " . $val->getDateCree() . "<br>
+                 </p>
+                 <p>
+                " . $val->getContenu() . "
+                </p>";
+
+
+            if(!isset($_REQUEST["newsid"])){
+                print "<a href='index.php?action=voir_commentaire&newsid=". $val->getId() ."'>voir commentaire</a>";
+            }
+
+            print "</div>";
+
+            if(isset($comm)){
+                if($comm != null){
+                    foreach ($comm as $val){
+                        print "<u><b>" . $val->getAuteur() . "</u></b>" . ": " . $val->getContenu();
+                    }
+                }
+                else{
+                    print "Pas encore de commentaire";
+                }
+            }
+        }
         ?>
+        <button><a href='ajoutNews.php'>Ajouter News</a> </button>
     </div>
     <footer>
         <p>Vos messages :</p>

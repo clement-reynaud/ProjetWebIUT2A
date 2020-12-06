@@ -27,6 +27,10 @@ class ModeleNews{
     function getNewsAtDate($date){
         return $this->ngt->getNewsAtDate($date);
     }
+
+    function getNewsById($id){
+        return $this->ngt->getNewsById($id);
+    }
 }
 
 
