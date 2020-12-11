@@ -3,6 +3,7 @@
 require_once ("../config/Connection.php");
 require_once("../DAL/Gateway/UtilisateurGateway.php");
 require_once ("../Contrôleur/CtrlUtilisateur.php");
+require_once ("../Contrôleur/CtrlAdministrateur.php");
 require_once ("../Modèle/ModeleUtilisateur.php");
 
 class ValidationForm
