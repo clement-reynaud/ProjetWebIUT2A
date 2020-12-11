@@ -8,7 +8,6 @@ require_once ("../config/ValidationForm.php");
 class CtrlUtilisateur
 {
     function __construct(){
-        session_start();
         try{
             $dVueErreur=array();
             if(isset($_REQUEST['action'])){
