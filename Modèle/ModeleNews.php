@@ -41,6 +41,3 @@ class ModeleNews{
         $this->ngt->supprNews($id);
     }
 }
-
-
-?>
