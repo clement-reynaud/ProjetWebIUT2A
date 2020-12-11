@@ -50,7 +50,6 @@ require_once("../DAL/Gateway/NewsGateway.php");
     </header>
     <div id="page">
         <?php
-<<<<<<< Updated upstream
         print "<h1>" . $titrepage . "</h1>";
 
         //Boucle d'affichage des news actuelles
@@ -85,7 +84,6 @@ require_once("../DAL/Gateway/NewsGateway.php");
                 }
             }
         }
-=======
         print $titrepage;
         foreach ($news as $val)
         print "
@@ -104,7 +102,6 @@ require_once("../DAL/Gateway/NewsGateway.php");
         
         <input type=\"button\" name=\"action\" value=\"add_news (le controleur marche moyen)\" onclick=window.location.href='index.php?action=page_add_news'>
         </form>"
->>>>>>> Stashed changes
         ?>
         <button><a href='ajoutNews.php'>Ajouter News</a> </button>
     </div>

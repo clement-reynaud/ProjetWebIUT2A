@@ -28,19 +28,16 @@ class ModeleNews{
         return $this->ngt->getNewsAtDate($date);
     }
 
-<<<<<<< Updated upstream
-    function getNewsById($id){
+    function getNewsById($id)
+    {
         return $this->ngt->getNewsById($id);
-=======
+    }
+
     function addNews($titre, $contenu){
         $this->ngt->addNews($titre, $contenu);
     }
 
     function suppNews($id){
         $this->ngt->supprNews($id);
->>>>>>> Stashed changes
     }
 }
-
-
-?>
