@@ -74,6 +74,10 @@ class CtrlUtilisateur
 
         $m = new ModeleNews();
 
+        if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+        }
+
         $titrepage = "Toutes les news:";
         $nbNews = $m->getNbNews();
         $news = $m->getNews();
@@ -136,7 +140,7 @@ class CtrlUtilisateur
         $_SESSION["pseudo"] = $u->getPseudo();
         $_SESSION["id"] = $u->getId();
 
-        $this->pagePrincipale();
+        header("location: ../Vue/index.php");
     }
 
     private function deconnexion()

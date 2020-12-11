@@ -27,9 +27,7 @@ require_once("../DAL/Gateway/NewsGateway.php");
                 </a>
             </li>
             <?php
-
-            //A CHANGER : Pas de $_Session dans la vue
-            if(!isset($_SESSION["pseudo"])){
+            if(!isset($user)){
                 print "<li>
                         <a href=\"index.php?action=login\">Login</a>
                     </li>";
@@ -40,12 +38,14 @@ require_once("../DAL/Gateway/NewsGateway.php");
                     </li>";
             }
             ?>
+            <li>
+                <?php
+                if(isset($user))
+                print "<p> Connecté en tant que:" . $_SESSION["pseudo"] . " " . $_SESSION["id"] . "</p>";
+                ?>
+            </li>
         </ul>
     </header>
-    <?php
-    //TEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    print $_SESSION["pseudo"] . " " . $_SESSION["id"];
-    ?>
     <div id="page">
         <?php
         if(isset($titrepage)){
@@ -103,10 +103,6 @@ require_once("../DAL/Gateway/NewsGateway.php");
         else{
             print "Pas de News <br>";
         }
-        if(!isset($comm)){
-            print "<br><button><a href='index.php?action=page_add_news'>Ajouter News</a> </button>";
-        }
-
         ?>
     </div>
     <footer>
