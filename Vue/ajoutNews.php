@@ -19,6 +19,7 @@
             <input type="submit" value="Submit">
             <input type="reset" value="Reset">
         </div>
+        <input type="hidden" name="action" value="add_news">
 
         <input type="button" value="Retour" onclick="history.go(-1)">
 

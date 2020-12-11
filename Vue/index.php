@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-require_once("../Contrôleur/CtrlUtilisateur.php");
-require_once ("../Contrôleur/CtrlAdministrateur.php");
+require_once ("../Contrôleur/FrontController.php");
 
-$ctrl = new CtrlAdministrateur();
+$ctrl = new FrontController();

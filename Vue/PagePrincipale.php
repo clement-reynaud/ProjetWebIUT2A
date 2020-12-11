@@ -88,7 +88,7 @@ require_once("../DAL/Gateway/NewsGateway.php");
             }
         }
         ?>
-        <button><a href='ajoutNews.php'>Ajouter News</a> </button>
+        <button><a href='index.php?action=page_add_news'>Ajouter News</a> </button>
     </div>
     <footer>
         <p>Vos messages :</p>
