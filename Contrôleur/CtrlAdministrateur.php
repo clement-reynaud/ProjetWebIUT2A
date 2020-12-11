@@ -11,8 +11,6 @@ class CtrlAdministrateur extends CtrlUtilisateur
      */
     public function __construct()
     {
-        session_start();
-        session_unset();
         try{
             $dVueErreur=array();
             if(isset($_REQUEST['action'])){
