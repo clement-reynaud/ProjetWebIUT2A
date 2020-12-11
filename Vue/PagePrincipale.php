@@ -15,18 +15,20 @@ require_once("../DAL/Gateway/NewsGateway.php");
     <header>
         <ul id="bandeau">
             <li>
-                <a href="index.php?action=">Acceuil</a>
+                <a href="index.php?action=">Accueil</a>
             </li>
             <li>
                 <a>
                     <form action="index.php">
                         <input type="date" name="date">
-                        <input type="submit">
+                        <input type="submit" value="Rechercher">
                         <input type="hidden" name="action" value="rech_date">
                     </form>
                 </a>
             </li>
             <?php
+
+            //A CHANGER : Pas de $_Session dans la vue
             if(!isset($_SESSION["pseudo"])){
                 print "<li>
                         <a href=\"index.php?action=login\">Login</a>
@@ -40,6 +42,7 @@ require_once("../DAL/Gateway/NewsGateway.php");
             ?>
         </ul>
         <?php
+        //A CHANGER : Pas de $_Session dans la vue
         if(isset($_SESSION["pseudo"])){
             print "Connecté en tant que :" . $_SESSION["pseudo"];
         }
