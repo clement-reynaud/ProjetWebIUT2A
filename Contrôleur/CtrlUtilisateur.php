@@ -98,10 +98,8 @@ class CtrlUtilisateur
     }
 
     function addCommentaire(){
-        ValidationForm::validate();
-
         $m=new ModeleCommentaire();
-        $m->addCommentaire($_POST["auteurid"], $_POST["newsid"], $_POST["contenu"]);
+        $m->addCommentaire($_SESSION["id"], $_POST["newsid"], $_POST["contenu"]);
         print("Commentaire ajouté");
 
     }
@@ -129,8 +127,11 @@ class CtrlUtilisateur
     {
         ValidationForm::validate();
 
-        $_SESSION["pseudo"] = $_POST["pseudo"];
-        $_SESSION["mdp"] = $_POST["mdp"];
+        $m = new ModeleUtilisateur();
+        $u = $m->getUti($_REQUEST["pseudo"]);
+
+        $_SESSION["pseudo"] = $u->getPseudo();
+        $_SESSION["id"] = $u->getId();
 
         $this->pagePrincipale();
     }
@@ -138,6 +139,7 @@ class CtrlUtilisateur
     private function deconnexion()
     {
         unset($_SESSION["pseudo"]);
+        unset($_SESSION["id"]);
         session_destroy();
 
         $this->pagePrincipale();

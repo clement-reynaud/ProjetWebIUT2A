@@ -23,4 +23,8 @@ class ModeleUtilisateur{
         $this->ugt->addUtilisateur($pseudo,$login);
     }
 
+    public function getUti($pseudo){
+        return $this->ugt->getUti($pseudo);
+    }
+
 }

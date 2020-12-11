@@ -68,4 +68,16 @@ class UtilisateurGateway
             ':mdp'=>array($mdp,PDO::PARAM_STR)
         ));
     }
+
+    public function getUti(string $pseudo)
+    {
+        $query="SELECT * FROM `utilisateurs` WHERE pseudo=:pseudo";
+        $this->con->executeQuery($query,array(
+            ':pseudo'=>array($pseudo,PDO::PARAM_STR),
+        ));
+
+        $u = $this->con->getResults()[0];
+
+        return new Utilisateur($u["id"],$u["pseudo"]);
+    }
 }

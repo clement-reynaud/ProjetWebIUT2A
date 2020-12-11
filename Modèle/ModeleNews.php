@@ -25,7 +25,14 @@ class ModeleNews{
     }
 
     function getNewsAtDate($date){
-        return $this->ngt->getNewsAtDate($date);
+        //Manipulation du format des dates
+        $date1 = $date = date("Y-m-d H:i:s",strtotime($date));
+        $date2 = $date = date("Y-m-d H:i:s",strtotime($date));
+        $date2 = new DateTime($date2);
+        date_modify($date2,"+1 day");
+        $date2 = date_format($date2,"Y-m-d H:i:s");
+
+        return $this->ngt->getNewsAtDate($date1,$date2);
     }
 
     function getNewsById($id)

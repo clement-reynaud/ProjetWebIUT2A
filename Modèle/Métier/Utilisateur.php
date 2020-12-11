@@ -11,13 +11,11 @@ class Utilisateur
      * Utilisateur constructor.
      * @param $id
      * @param $pseudo
-     * @param $mdp
      */
-    public function __construct($id, $pseudo, $mdp)
+    public function __construct($id, $pseudo)
     {
         $this->id = $id;
         $this->pseudo = $pseudo;
-        $this->mdp = $mdp;
     }
 
     /**

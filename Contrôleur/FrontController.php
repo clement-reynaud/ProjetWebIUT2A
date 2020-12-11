@@ -8,7 +8,15 @@ class FrontController
     private $actionAdmin = ["supp_comm","add_news","page_add_news","supp_news"];
 
     public function __construct(){
-        if(in_array($_REQUEST["action"],$this->actionAdmin) && isset($_REQUEST["action"])){
+
+        if(isset($_REQUEST['action'])){
+            $action=$_REQUEST['action'];
+        }
+        else{
+            $action = null;
+        }
+
+        if(in_array($action,$this->actionAdmin)){
             $ctrl = new CtrlAdministrateur();
         }
         else{

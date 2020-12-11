@@ -41,61 +41,81 @@ require_once("../DAL/Gateway/NewsGateway.php");
             }
             ?>
         </ul>
-        <?php
-        //A CHANGER : Pas de $_Session dans la vue
-        if(isset($_SESSION["pseudo"])){
-            print "Connecté en tant que :" . $_SESSION["pseudo"];
-        }
-        else{
-            print "test";
-        }
-        ?>
     </header>
+    <?php
+    //TEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    print $_SESSION["pseudo"] . " " . $_SESSION["id"];
+    ?>
     <div id="page">
         <?php
-        print "<h1>" . $titrepage . "</h1>";
+        if(isset($titrepage)){
+            print "<h1>" . $titrepage . "</h1>";
+        }
+        else{
+            print "Page d'acceuil";
+        }
 
         //Boucle d'affichage des news actuelles
-        foreach ($news as $val){
-            print "
-            <div style='border: solid; margin: 10px'>
-                <h2 id='titreNews'>
-                " . $val->getTitre() . "
-                 </h2>
-                 <p>
-                 " . $val->getDateCree() . "<br>
-                 </p>
-                 <p>
-                " . $val->getContenu() . "
-                </p>";
+        if(isset($news) && $news != null){
+            foreach ($news as $val){
+                print "
+                <div style='border: solid; margin: 10px'>
+                    <h2 id='titreNews'>
+                    " . $val->getTitre() . "
+                     </h2>
+                     <p>
+                     " . $val->getDateCree() . "<br>
+                     </p>
+                     <p>
+                    " . $val->getContenu() . "
+                    </p>";
 
 
-            if(!isset($_REQUEST["newsid"])){
-                print "<a href='index.php?action=voir_commentaire&newsid=". $val->getId() ."'>voir commentaire</a>";
-            }
-
-            print "</div>";
-
-            if(isset($comm)){
-                if($comm != null){
-                    foreach ($comm as $val){
-                        print "<u><b>" . $val->getAuteur() . "</u></b>" . ": " . $val->getContenu();
-                    }
+                if(!isset($_REQUEST["newsid"])){
+                    print "<a href='index.php?action=voir_commentaire&newsid=". $val->getId() ."'>voir commentaire</a>";
                 }
-                else{
-                    print "Pas encore de commentaire";
+
+                print "</div>";
+
+                if(isset($comm)){
+                    print "<form action='index.php?action=add_comm' method='post'>
+                            <div>
+                                <label>Commentaire :</label>
+                                <input type='text' name='contenu'>
+                                <input type='submit' value='Submit'>
+                                <input type='hidden' name='newsid' value='" . $val->getId() . "'
+                            </div><br>";
+                    if($comm != null){
+                        foreach ($comm as $val){
+                            print "<u><b>" . $val->getAuteur() . "</u></b>" . ": " . $val->getContenu();
+                        }
+                    }
+                    else{
+                        print "Pas encore de commentaire <br>";
+                    }
                 }
             }
         }
+        else{
+            print "Pas de News <br>";
+        }
+        if(!isset($comm)){
+            print "<br><button><a href='index.php?action=page_add_news'>Ajouter News</a> </button>";
+        }
+
         ?>
-        <button><a href='index.php?action=page_add_news'>Ajouter News</a> </button>
     </div>
     <footer>
         <p>Vos messages :</p>
 
         <p>News :
             <?php
-                echo $nbNews;
+                if(isset($nbNews)){
+                    print $nbNews;
+                }
+                else{
+                    print "0";
+                }
             ?>
         </p>
     </footer>
