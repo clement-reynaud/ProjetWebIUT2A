@@ -24,6 +24,9 @@ class CtrlUtilisateur
                 case "add_comm":
                     $this->addCommentaire();
                     break;
+                case "page_add_comm":
+                    $this->pageAddCommentaire();
+                    break;
                 case "rech_date":
                     $this->rechDate();
                     break;
@@ -98,7 +101,6 @@ class CtrlUtilisateur
     }
 
     function addCommentaire(){
-        ValidationForm::validate();
 
         $m=new ModeleCommentaire();
         $m->addCommentaire($_POST["auteurid"], $_POST["newsid"], $_POST["contenu"]);
@@ -164,6 +166,11 @@ class CtrlUtilisateur
 
         require ("../Vue/PagePrincipale.php");
 
+    }
+
+    private function pageAddCommentaire()
+    {
+        require ("ajoutCommentaire.php");
     }
 
 

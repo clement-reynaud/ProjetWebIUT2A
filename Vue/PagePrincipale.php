@@ -86,9 +86,13 @@ require_once("../DAL/Gateway/NewsGateway.php");
                     print "Pas encore de commentaire";
                 }
             }
+            print "<button><a href='index.php?action=page_add_comm'>Ajouter Commentaires</a> </button>";
+        }
+        if(!isset($comm)){
+            print "<button><a href='index.php?action=page_add_news'>Ajouter News</a> </button>";
         }
         ?>
-        <button><a href='index.php?action=page_add_news'>Ajouter News</a> </button>
+
     </div>
     <footer>
         <p>Vos messages :</p>
