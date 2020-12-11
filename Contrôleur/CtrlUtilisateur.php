@@ -98,6 +98,11 @@ class CtrlUtilisateur
     }
 
     function addCommentaire(){
+        ValidationForm::validate();
+
+        $m=new ModeleCommentaire();
+        $m->addCommentaire($_POST["auteurid"], $_POST["newsid"], $_POST["contenu"]);
+        print("Commentaire ajouté");
 
     }
 
@@ -138,10 +143,11 @@ class CtrlUtilisateur
         $this->pagePrincipale();
     }
 
-    private function suppCommentaire()
+    function suppCommentaire()
     {
         $m=new ModeleCommentaire();
-
+        $m->suppCommentaire($_POST["id"]);
+        print("Commentaire supprimé");
     }
 
     private function voirCommentaire()

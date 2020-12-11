@@ -1,9 +1,11 @@
 <?php
 
+require_once ("../Modèle/ModeleNews.php");
+require_once ("../Modèle/ModeleUtilisateur.php");
+require_once ("../config/ValidationForm.php");
 
 class CtrlAdministrateur extends CtrlUtilisateur
 {
-
     /**
      * CtrlAdministrateur constructor.
      */
@@ -21,9 +23,36 @@ class CtrlAdministrateur extends CtrlUtilisateur
             }
 
             switch ($action){
+                case null:
+                    $this->pagePrincipale();
+                    break;
+                case "add_comm":
+                    $this->addCommentaire();
+                    break;
+                case "rech_date":
+                    $this->rechDate();
+                    break;
+                case "login":
+                    $this->login();
+                    break;
+                case "validation_login":
+                    $this->validateLogin();
+                    require ("../Vue/erreur.php");
+                    break;
+                case "add_utilisateur":
+                    $this->addUtilisateur();
+                    break;
+                case "validation_add_utilisateur":
+                    $this->validateaddUtilisateur();
+                    break;
+                case "supp_comm":
+                    $this->suppCommentaire();
+                    break;
                 case "add_news":
                     $this->addNews();
                     break;
+                case "page_add_news":
+                    $this->pageAddNews();
                 case "supp_news":
                     $this->suppNews();
                     break;
@@ -44,35 +73,25 @@ class CtrlAdministrateur extends CtrlUtilisateur
         exit(0);
     }
 
+
+
     private function addNews()
     {
+
         ValidationForm::validate();
 
         $m=new ModeleNews();
         $m->addNews($_POST["titre"], $_POST["contenu"]);
-        print("News Ajoutée");
+        print("News ajoutée");
+        require ("ajoutNews.php");
     }
 
     private function suppNews()
     {
         $m=new ModeleNews();
         $m->suppNews($_POST["id"]);
-        print("News Supprimée");
+        print("News supprimée");
     }
-
-
-
-
-    function validateaddUtilisateur()
-    {
-        ValidationForm::validate();
-
-        $m = new ModeleUtilisateur();
-
-        $m->addUtilisateur($_POST["pseudo"],$_POST["mdp"]);
-        print ("compte crée");
-    }
-
     private function login()
     {
         require ("login.php");
@@ -85,4 +104,10 @@ class CtrlAdministrateur extends CtrlUtilisateur
         print("loged in" . $_POST["pseudo"] . " " . $_POST["mdp"]);
         //Login as utilisateur
     }
+
+     function pageAddNews()
+    {
+        require ("ajoutNews.php");
+    }
+
 }

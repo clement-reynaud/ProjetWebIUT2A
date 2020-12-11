@@ -40,7 +40,7 @@ class NewsGateway
         ));
     }
 
-    public function suprrNews($id){
+    public function supprNews($id){
         $query = "DELETE FROM `news` WHERE id=:id";
         $this->con->executeQuery($query,array(
             ":id"=>array($id,PDO::PARAM_STR)
