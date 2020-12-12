@@ -84,7 +84,8 @@ require_once("../DAL/Gateway/NewsGateway.php");
                                 <input type='text' name='contenu'>
                                 <input type='submit' value='Submit'>
                                 <input type='hidden' name='newsid' value='" . $val->getId() . "'
-                            </div><br>";
+                            </div><br>
+                            </form>";
                     if($comm != null){
                         foreach ($comm as $val){
                             print "<u><b>" . $val->getAuteur() . "</u></b>" . ": " . $val->getContenu();

@@ -59,8 +59,9 @@ class CtrlAdministrateur extends CtrlUtilisateur
     {
         $m=new ModeleNews();
         $m->addNews($_POST["titre"], $_POST["contenu"]);
-        print("News ajoutée");
-        require ("ajoutNews.php");
+
+
+        $this->pagePrincipale();
     }
 
     private function suppNews()
@@ -76,7 +77,23 @@ class CtrlAdministrateur extends CtrlUtilisateur
 
      function pageAddNews()
     {
+        $titrepage = "Ajout d'une news :";
         require ("ajoutNews.php");
+    }
+
+    function pagePrincipale(){
+
+        $m = new ModeleNews();
+
+        if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+        }
+
+        $titrepage = "Toutes les news:";
+        $nbNews = $m->getNbNews();
+        $news = $m->getNews();
+
+        require ("../Vue/test.php");
     }
 
 }

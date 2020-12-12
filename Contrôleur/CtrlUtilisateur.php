@@ -7,6 +7,8 @@ require_once ("../config/ValidationForm.php");
 
 class CtrlUtilisateur
 {
+    private $pagePrincipale = "../Vue/test.php";
+
     function __construct(){
         try{
             $dVueErreur=array();
@@ -82,10 +84,14 @@ class CtrlUtilisateur
         $nbNews = $m->getNbNews();
         $news = $m->getNews();
 
-        require ("../Vue/PagePrincipale.php");
+        require ("../Vue/test.php");
     }
 
     function rechDate(){
+
+        if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+        }
 
         $m = new ModeleNews();
         if(isset($_REQUEST["date"])){
@@ -96,7 +102,7 @@ class CtrlUtilisateur
             $nbNews = $m->getNbNews();
             $news = $m->getNewsAtDate($date);
 
-            require ("../Vue/PagePrincipale.php");
+            require ("../Vue/test.php");
         }
         else{
             $dVueErreur[] = "erreur date";
@@ -107,11 +113,12 @@ class CtrlUtilisateur
     function addCommentaire(){
         $m=new ModeleCommentaire();
         $m->addCommentaire($_SESSION["id"], $_POST["newsid"], $_POST["contenu"]);
-        print("Commentaire ajouté");
+        $this->voirCommentaire();
 
     }
 
     function addUtilisateur(){
+        $titrepage = "Creation de compte:";
         require ("../Vue/creationCompte.php");
     }
 
@@ -127,6 +134,7 @@ class CtrlUtilisateur
 
     private function login()
     {
+        $titrepage="Connexion:";
         require ("login.php");
     }
 
@@ -161,17 +169,21 @@ class CtrlUtilisateur
 
     private function voirCommentaire()
     {
+        if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+        }
+
         $m1 = new ModeleNews();
         $m2 = new ModeleCommentaire();
 
         $n = $m1->getNewsById($_REQUEST["newsid"]);
-        $titrepage = "Commentaire :";
+        $titrepage = "Commentaires :";
         $nbNews = $m1->getNbNews();
         $news[] = $n;
         $comm = $m2->getComm($n->getId());
 
 
-        require ("../Vue/PagePrincipale.php");
+        require ("../Vue/test.php");
 
     }
 

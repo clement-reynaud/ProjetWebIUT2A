@@ -60,6 +60,7 @@ class CommentaireGateway
             $res[] = new Commentaire($val["id"],$val["contenu"],$val["newsid"],$val["auteurid"],$this->getCommAuthor($val["auteurid"]));
         }
 
+        $res = array_reverse($res);
         return $res;
 
     }
