@@ -68,7 +68,7 @@
             <input class="btn btn-primary mr-3" type="submit" value="Connexion">
             <input class="btn btn-warning" type="reset" value="Reset">
         </div>
-        <input type="hidden" name="action" value="validation_login">
+        <input type="hidden" name="action" value="login">
     </form>
     <p>Pas de compte, créer en un <a href="index.php?action=add_utilisateur">ici</a></p>
     <form>

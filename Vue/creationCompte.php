@@ -57,7 +57,7 @@
 <main class="container-fluid">
     <form class="form-group mt-1" action="index.php" method="post">
         <div>
-            <label>Login</label>
+            <label>Pseudo</label>
             <input class="form-control" type="text" name="pseudo">
         </div>
         <div>
@@ -73,7 +73,7 @@
             <input class="btn btn-warning" type="reset" value="Reset">
         </div>
 
-        <input type="hidden" name="action" value="validation_add_utilisateur">
+        <input type="hidden" name="action" value="add_utilisateur">
         <input class="btn btn-danger mt-2   " type="button" value="Retour" onclick="history.go(-1)">
 
     </form>

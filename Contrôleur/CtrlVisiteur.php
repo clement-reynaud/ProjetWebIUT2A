@@ -27,15 +27,8 @@ class CtrlVisiteur
                 case "login":
                     $this->login();
                     break;
-                case "validation_login":
-                    $this->validateLogin();
-                    require ("../Vue/erreur.php");
-                    break;
                 case "add_utilisateur":
                     $this->addUtilisateur();
-                    break;
-                case "validation_add_utilisateur":
-                    $this->validateaddUtilisateur();
                     break;
                 case "voir_commentaire":
                     $this->voirCommentaire();
@@ -63,7 +56,7 @@ class CtrlVisiteur
         $m = new ModeleNews();
 
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"],$_SESSION["role"]);
         }
 
         $titrepage = "Toutes les news:";
@@ -76,7 +69,7 @@ class CtrlVisiteur
     function rechDate(){
 
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"],$_SESSION["role"]);
         }
 
         $m = new ModeleNews();
@@ -97,45 +90,35 @@ class CtrlVisiteur
     }
 
     function addUtilisateur(){
-        $titrepage = "Creation de compte:";
-        require ("../Vue/creationCompte.php");
-    }
+        if(isset($_POST["pseudo"]) && isset($_POST["mdp"])){
+            $m = new ModeleUtilisateur();
+            $m->addUtilisateur($_POST["pseudo"],$_POST["mdp"],$_POST["confirm_mdp"]);
+            header("location: ../Vue/index.php");
+        }
+        else{
+            $titrepage = "Creation de compte:";
+            require ("../Vue/creationCompte.php");
+        }
 
-    function validateaddUtilisateur()
-    {
-        Validation::validate_add_utilisateur($_POST["pseudo"],$_POST["mdp"],$_POST["confirm_mdp"]);
-
-        $m = new ModeleUtilisateur();
-
-        $m->addUtilisateur($_POST["pseudo"],$_POST["mdp"]);
-        print ("compte crée");
     }
 
     private function login()
     {
-        $titrepage="Connexion:";
-        require ("login.php");
-    }
-
-    function validateLogin()
-    {
-        Validation::validate_connexion_utilisateur($_POST["pseudo"],$_POST["mdp"]);
-
-        $m = new ModeleUtilisateur();
-        $u = $m->getUti($_REQUEST["pseudo"]);
-
-        $_SESSION["role"] = "Utilisateur";
-        $_SESSION["pseudo"] = $u->getPseudo();
-
-        print $_GET;
-
-        header("location: ../Vue/index.php");
+        if(isset($_POST["pseudo"]) && isset($_POST["mdp"])){
+            $m = new ModeleUtilisateur();
+            $m->connexionUtilisateur($_REQUEST["pseudo"],$_REQUEST["mdp"]);
+            header("location: ../Vue/index.php");
+        }
+        else{
+            $titrepage="Connexion:";
+            require ("login.php");
+        }
     }
 
     public static function voirCommentaire()
     {
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"],$_SESSION["role"]);
         }
 
         $m1 = new ModeleNews();

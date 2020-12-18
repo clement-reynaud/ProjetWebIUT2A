@@ -8,36 +8,17 @@ require_once ("../Modèle/ModeleUtilisateur.php");
 
 class Validation
 {
+    static function validate_string($str){
+        if ($str != filter_var($str, FILTER_SANITIZE_STRING)) {
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     static function validate_add_utilisateur($pseudo,$mdp,$confirm_mdp){
-        $m = new ModeleUtilisateur();
 
-        if(!$m->verifyPseudo($pseudo)){
-            $dVueErreur[] = "Ce login existe deja.";
-        }
-
-        if ($mdp != $confirm_mdp) {
-            $dVueErreur[] = "Veuillez confirmer votre mot de passe.";
-        }
-
-        if ($pseudo == "" || !isset($pseudo)) {
-            $dVueErreur[] = "Veuillez entrer un pseudo.";
-        }
-
-        if ($pseudo != filter_var($pseudo, FILTER_SANITIZE_STRING)) {
-            $dVueErreur[] = "Ce pseudo est erroné.";
-        }
-
-        if ($mdp == "" || !isset($mdp)) {
-            $dVueErreur[] = "Veuillez insérer votre mot de passe.";
-        }
-
-        if ($mdp != filter_var($mdp, FILTER_SANITIZE_STRING)) {
-            $dVueErreur[] = "Ce mot de passe est erroné.";
-        }
-
-        if(isset($dVueErreur[0])){
-            require("../Vue/erreur.php");
-        }
     }
 
     static function validate_connexion_utilisateur($pseudo,$mdp){
