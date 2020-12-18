@@ -78,6 +78,6 @@ class UtilisateurGateway
 
         $u = $this->con->getResults()[0];
 
-        return new Utilisateur($u["id"],$u["pseudo"]);
+        return new Utilisateur($u["id"],$u["pseudo"],'');
     }
 }

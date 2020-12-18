@@ -8,6 +8,14 @@ require_once ("../Modèle/ModeleUtilisateur.php");
 
 class Validation
 {
+    static function validate_string($str){
+        if ($str != filter_var($str, FILTER_SANITIZE_STRING)) {
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     static function validate_add_utilisateur($pseudo,$mdp,$confirm_mdp){
         $m = new ModeleUtilisateur();
 

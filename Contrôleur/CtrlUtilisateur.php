@@ -55,7 +55,7 @@ class CtrlUtilisateur
         $m = new ModeleNews();
 
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"],'');
         }
 
         $titrepage = "Toutes les news:";

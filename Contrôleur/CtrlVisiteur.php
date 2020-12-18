@@ -63,20 +63,20 @@ class CtrlVisiteur
         $m = new ModeleNews();
 
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"],'');
         }
 
         $titrepage = "Toutes les news:";
         $nbNews = $m->getNbNews();
         $news = $m->getNews();
-
+        $cookie=$_COOKIE[$_SESSION["pseudo"]."nbCom"];
         require ("../Vue/test.php");
     }
 
     function rechDate(){
 
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"],'');
         }
 
         $m = new ModeleNews();
@@ -135,7 +135,7 @@ class CtrlVisiteur
     public static function voirCommentaire()
     {
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"], '');
         }
 
         $m1 = new ModeleNews();

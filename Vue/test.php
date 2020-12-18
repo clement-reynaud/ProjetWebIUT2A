@@ -142,5 +142,33 @@
     ?>
 
 </main>
+<footer>
+    <p>Vos messages :
+        <?php
+        if(isset($user)){
+            if(isset($cookie)) {
+                print $cookie;
+            }
+            else{
+                print "Problème au niveau du cookie pour le nombre de commentaires envoyés (=0)";
+            }
+        }
+        else{
+            print "0 (Connectez vous pour voir votre nombre de messages envoyés)";
+        }
+        ?>
+    </p>
+
+    <p>News :
+        <?php
+        if(isset($nbNews)){
+            print $nbNews;
+        }
+        else{
+            print "0";
+        }
+        ?>
+    </p>
+</footer>
 </body>
 </html>
