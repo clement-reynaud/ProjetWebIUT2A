@@ -1,19 +1,21 @@
 <?php
 
 
-class Utilisateur
+class Admin
 {
     protected $id;
     protected $pseudo;
+    protected $role;
 
     /**
      * Utilisateur constructor.
      * @param $id
      * @param $pseudo
+     * @param $role
      */
-    public function __construct($id, $pseudo)
+    public function __construct($pseudo, $role)
     {
-        $this->id = $id;
+        $this->role = $role;
         $this->pseudo = $pseudo;
     }
 
@@ -48,5 +50,4 @@ class Utilisateur
     {
         $this->pseudo = $pseudo;
     }
-
 }

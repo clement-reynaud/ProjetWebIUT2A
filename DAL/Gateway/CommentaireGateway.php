@@ -16,22 +16,6 @@ class CommentaireGateway
         $this->con = $con;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCon()
-    {
-        return $this->con;
-    }
-
-    /**
-     * @param mixed $con
-     */
-    public function setCon($con)
-    {
-        $this->con = $con;
-    }
-
     public function addCommentaire(int $auteurid, int $newsid, string $contenu){
         $query="INSERT INTO COMMENTAIRES (`auteurid`, `newsid`, `contenu`) VALUES (:auteurid,:newsid,:contenu)";
         $this->con->executeQuery($query,array(

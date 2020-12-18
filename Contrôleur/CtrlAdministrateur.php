@@ -2,7 +2,7 @@
 
 require_once ("../Modèle/ModeleNews.php");
 require_once ("../Modèle/ModeleUtilisateur.php");
-require_once ("../config/ValidationForm.php");
+require_once("../config/Validation.php");
 
 class CtrlAdministrateur extends CtrlUtilisateur
 {
@@ -57,6 +57,8 @@ class CtrlAdministrateur extends CtrlUtilisateur
 
     private function addNews()
     {
+        Validation::validate_news($_POST["titre"],$_POST["contenu"]);
+
         $m=new ModeleNews();
         $m->addNews($_POST["titre"], $_POST["contenu"]);
 

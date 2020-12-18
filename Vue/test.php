@@ -32,7 +32,6 @@
                         <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
 
                             <p class='ml-4 mt-2'>Pseudo: " . $user->getPseudo() . "</p>
-                            <p class='ml-4 mt-2'>ID: " . $user->getId() ."</p>
                             <div class='dropdown-divider'></div>
                             <a class='ml-4 mt-2' href='index.php?action=deconnexion'>Deconnexion</a>
                         </div>";
@@ -110,13 +109,19 @@
                 if($comm != null){
                     foreach ($comm as $val){
                         print "<div class='alert alert-dark m-2'>
-                                    <u><b>" . $val->getAuteur() . "</u></b>" . ": " . $val->getContenu() . "
-                                    <button class='btn btn-danger float-right' style='max-height: 35px;'>
+                                    <u><b>" . $val->getAuteur() . "</u></b>" . ": " . $val->getContenu();
+
+                        if(isset($user) && $user->getId() == $val->getAuteurid()){
+
+
+                        print       "<a class='btn btn-danger' href='index.php?action=supp_comm&newsid=" . $_REQUEST["newsid"] . "&commid=" . $val->getId() . "' style='float: right; max-height: 35px'>
                                         <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash-fill mb-2' viewBox='0 0 16 16'>
-                                            <path fill-rule='evenodd' d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z'/>
+                                                <path fill-rule='evenodd' d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z'/>
                                         </svg>
-                                    </button>
-                               </div>";
+                                    </a>";
+
+                        }
+                        print       "</div>";
                     }
                 }
                 else{

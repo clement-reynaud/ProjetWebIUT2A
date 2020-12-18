@@ -3,7 +3,7 @@
 require_once ("../Modèle/ModeleNews.php");
 require_once ("../Modèle/ModeleUtilisateur.php");
 require_once ("../Modèle/ModeleCommentaire.php");
-require_once ("../config/ValidationForm.php");
+require_once("../config/Validation.php");
 
 class CtrlUtilisateur
 {
@@ -26,33 +26,11 @@ class CtrlUtilisateur
                 case "add_comm":
                     $this->addCommentaire();
                     break;
-                case "page_add_comm":
-                    $this->pageAddCommentaire();
-                    break;
-                case "rech_date":
-                    $this->rechDate();
-                    break;
-                case "login":
-                    $this->login();
-                    break;
-                case "validation_login":
-                    $this->validateLogin();
-                    require ("../Vue/erreur.php");
-                    break;
                 case "deconnexion":
                     $this->deconnexion();
                     break;
-                case "add_utilisateur":
-                    $this->addUtilisateur();
-                    break;
-                case "validation_add_utilisateur":
-                    $this->validateaddUtilisateur();
-                    break;
                 case "supp_comm":
                     $this->suppCommentaire();
-                    break;
-                case "voir_commentaire":
-                    $this->voirCommentaire();
                     break;
                 default:
                     $dVueErreur[] = "erreur appel php";
@@ -77,7 +55,7 @@ class CtrlUtilisateur
         $m = new ModeleNews();
 
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
+            $user = new Utilisateur($_SESSION["pseudo"],$_SESSION["role"]);
         }
 
         $titrepage = "Toutes les news:";
@@ -87,68 +65,14 @@ class CtrlUtilisateur
         require ("../Vue/test.php");
     }
 
-    function rechDate(){
-
-        if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
-        }
-
-        $m = new ModeleNews();
-        if(isset($_REQUEST["date"])){
-            $date = $_REQUEST["date"];
-
-
-            $titrepage = "Resultat Recherche :";
-            $nbNews = $m->getNbNews();
-            $news = $m->getNewsAtDate($date);
-
-            require ("../Vue/test.php");
-        }
-        else{
-            $dVueErreur[] = "erreur date";
-            require ("../Vue/erreur.php");
-        }
-    }
-
     function addCommentaire(){
         $m=new ModeleCommentaire();
+
+        Validation::validate_comm($_POST["contenu"]);
+
         $m->addCommentaire($_SESSION["id"], $_POST["newsid"], $_POST["contenu"]);
         $this->voirCommentaire();
 
-    }
-
-    function addUtilisateur(){
-        $titrepage = "Creation de compte:";
-        require ("../Vue/creationCompte.php");
-    }
-
-    function validateaddUtilisateur()
-    {
-        ValidationForm::validate();
-
-        $m = new ModeleUtilisateur();
-
-        $m->addUtilisateur($_POST["pseudo"],$_POST["mdp"]);
-        print ("compte crée");
-    }
-
-    private function login()
-    {
-        $titrepage="Connexion:";
-        require ("login.php");
-    }
-
-    private function validateLogin()
-    {
-        ValidationForm::validate();
-
-        $m = new ModeleUtilisateur();
-        $u = $m->getUti($_REQUEST["pseudo"]);
-
-        $_SESSION["pseudo"] = $u->getPseudo();
-        $_SESSION["id"] = $u->getId();
-
-        header("location: ../Vue/index.php");
     }
 
     private function deconnexion()
@@ -163,8 +87,8 @@ class CtrlUtilisateur
     function suppCommentaire()
     {
         $m=new ModeleCommentaire();
-        $m->suppCommentaire($_POST["id"]);
-        print("Commentaire supprimé");
+        $m->suppCommentaire($_REQUEST["commid"]);
+        $this->voirCommentaire();
     }
 
     private function voirCommentaire()
@@ -185,11 +109,6 @@ class CtrlUtilisateur
 
         require ("../Vue/test.php");
 
-    }
-
-    private function pageAddCommentaire()
-    {
-        require ("ajoutCommentaire.php");
     }
 
 
