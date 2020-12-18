@@ -62,7 +62,7 @@ class CtrlVisiteur
         $titrepage = "Toutes les news:";
         $nbNews = $m->getNbNews();
         $news = $m->getNews();
-
+        $cookie=$_COOKIE[$_SESSION["pseudo"]."nbCom"];
         require ("../Vue/test.php");
     }
 

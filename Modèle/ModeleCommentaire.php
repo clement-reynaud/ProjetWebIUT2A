@@ -17,7 +17,9 @@ class ModeleCommentaire
     }
 
     function addCommentaire(int $auteurid, int $newsid, string $contenu){
+        $u=new ModeleUtilisateur();
         $this->cgt->addCommentaire($auteurid, $newsid, $contenu);
+        $u->nbComCookie();
     }
 
     function suppCommentaire(int $id){

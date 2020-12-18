@@ -17,10 +17,6 @@ class Validation
         }
     }
 
-    static function validate_add_utilisateur($pseudo,$mdp,$confirm_mdp){
-
-    }
-
     static function validate_connexion_utilisateur($pseudo,$mdp){
         $m = new ModeleUtilisateur();
 
