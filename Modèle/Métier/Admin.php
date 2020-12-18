@@ -13,10 +13,11 @@ class Admin
      * @param $pseudo
      * @param $role
      */
-    public function __construct($pseudo, $role)
+    public function __construct($id,$pseudo, $role)
     {
         $this->role = $role;
         $this->pseudo = $pseudo;
+        $this->id = $id;
     }
 
     /**
@@ -50,4 +51,22 @@ class Admin
     {
         $this->pseudo = $pseudo;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+
 }

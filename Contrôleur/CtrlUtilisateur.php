@@ -55,7 +55,7 @@ class CtrlUtilisateur
         $m = new ModeleNews();
 
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["pseudo"],$_SESSION["role"]);
+            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
         }
 
         $titrepage = "Toutes les news:";
@@ -71,7 +71,7 @@ class CtrlUtilisateur
         Validation::validate_comm($_POST["contenu"]);
 
         $m->addCommentaire($_SESSION["id"], $_POST["newsid"], $_POST["contenu"]);
-        $this->voirCommentaire();
+        CtrlVisiteur::voirCommentaire();
 
     }
 
@@ -88,28 +88,7 @@ class CtrlUtilisateur
     {
         $m=new ModeleCommentaire();
         $m->suppCommentaire($_REQUEST["commid"]);
-        $this->voirCommentaire();
+        CtrlVisiteur::voirCommentaire();
     }
-
-    private function voirCommentaire()
-    {
-        if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
-            $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);
-        }
-
-        $m1 = new ModeleNews();
-        $m2 = new ModeleCommentaire();
-
-        $n = $m1->getNewsById($_REQUEST["newsid"]);
-        $titrepage = "Commentaires :";
-        $nbNews = $m1->getNbNews();
-        $news[] = $n;
-        $comm = $m2->getComm($n->getId());
-
-
-        require ("../Vue/test.php");
-
-    }
-
 
 }

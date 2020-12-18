@@ -117,7 +117,7 @@ class CtrlVisiteur
         require ("login.php");
     }
 
-    private function validateLogin()
+    function validateLogin()
     {
         Validation::validate_connexion_utilisateur($_POST["pseudo"],$_POST["mdp"]);
 
@@ -132,7 +132,7 @@ class CtrlVisiteur
         header("location: ../Vue/index.php");
     }
 
-    private function voirCommentaire()
+    public static function voirCommentaire()
     {
         if(isset($_SESSION["pseudo"]) && $_SESSION["pseudo"] != null){
             $user = new Utilisateur($_SESSION["id"],$_SESSION["pseudo"]);

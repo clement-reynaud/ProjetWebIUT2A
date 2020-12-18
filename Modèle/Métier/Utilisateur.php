@@ -5,16 +5,19 @@ class Utilisateur
 {
     protected $id;
     protected $pseudo;
+    protected $role;
 
     /**
      * Utilisateur constructor.
      * @param $id
      * @param $pseudo
+     * @param $role
      */
-    public function __construct($id, $pseudo)
+    public function __construct($id,$pseudo, $role)
     {
-        $this->id = $id;
+        $this->role = $role;
         $this->pseudo = $pseudo;
+        $this->id = $id;
     }
 
     /**
@@ -48,5 +51,23 @@ class Utilisateur
     {
         $this->pseudo = $pseudo;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+
 
 }
