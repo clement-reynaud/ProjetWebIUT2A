@@ -75,15 +75,14 @@ class ModeleUtilisateur{
         if(isset($_SESSION["pseudo"])) {
             Validation::validate_string($_SESSION["pseudo"]);
             $nomCookie = $_SESSION['pseudo'] . "nbCom";
-            $cookie=$_COOKIE[$nomCookie];
-            if (isset($cookie)) {
-                Validation::validate_string($cookie);
-                $cookie++;
+            if (isset($_COOKIE[$nomCookie])) {
+                Validation::validate_string($_COOKIE[$nomCookie]);
+                $_COOKIE[$nomCookie]++;
             }
             else{
-                $cookie=1;
+                $_COOKIE[$nomCookie]=1;
             }
-            setcookie($nomCookie, $cookie, time()+365*24*3600);
+            setcookie($nomCookie,$_COOKIE[$nomCookie], time()+365*24*3600);
 
         }
 

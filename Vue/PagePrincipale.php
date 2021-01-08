@@ -56,11 +56,12 @@
                                 if (isset($cookie)) {
                                     print $cookie;
                                 } else {
-                                    print 'Problème au niveau du cookie pour le nombre de commentaires envoyés (=0)';
+                                    print '0';
                                 }
                             } else {
                                 print '0 (Connexion Nécessaire)';
                             }
+
                             print "</p>
         
                             <p class='text-center'>Nombre de News : ";
