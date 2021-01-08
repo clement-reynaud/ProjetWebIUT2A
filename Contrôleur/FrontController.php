@@ -24,10 +24,22 @@ class FrontController
         }
 
         if(in_array($action,$this->actionAdmin)){
-            $ctrl = new CtrlAdministrateur();
+            if($ma->isAdmin()){
+                $ctrl = new CtrlAdministrateur();
+            }
+            else{
+                $_REQUEST["action"] = "login_admin";
+                $ctrl = new CtrlVisiteur();
+            }
         }
         elseif(in_array($action,$this->actionUti)){
-            $ctrl = new CtrlUtilisateur();
+            if($mu->isUtilisateur()){
+                $ctrl = new CtrlUtilisateur();
+            }
+            else{
+                $_REQUEST["action"] = "login";
+                $ctrl = new CtrlVisiteur();
+            }
         }
         else{
             $ctrl = new CtrlVisiteur();
