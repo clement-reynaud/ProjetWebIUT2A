@@ -41,6 +41,27 @@ class ModeleNews{
     }
 
     function addNews($titre, $contenu){
+
+        if(Validation::is_string_null($titre)){
+            $dVueErreur[] = "Veuillez entrer un titre.";
+        }
+
+        if (!Validation::validate_string($titre)) {
+            $dVueErreur[] = "Le titre est erroné.";
+        }
+
+        if(Validation::is_string_null($contenu)){
+            $dVueErreur[] = "Veuillez entrer un contenu.";
+        }
+
+        if (!Validation::validate_string($contenu)) {
+            $dVueErreur[] = "Le contenu est erroné.";
+        }
+
+        if(isset($dVueErreur[0])){
+            require("../Vue/erreur.php");
+        }
+
         $this->ngt->addNews($titre, $contenu);
     }
 

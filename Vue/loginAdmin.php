@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Connexion :</title>
+    <title>Connexion Admin:</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body style="padding-top: 55px;">
@@ -72,10 +72,8 @@
             <input class="btn btn-primary mr-3" type="submit" value="Connexion">
             <input class="btn btn-warning" type="reset" value="Reset">
         </div>
-        <input type="hidden" name="action" value="login">
+        <input type="hidden" name="action" value="login_admin">
     </form>
-    <p>Pas de compte, créer en un <a href="index.php?action=add_utilisateur">ici</a></p>
-    <p>Admin ? Connectez vous <a href="index.php?action=login_admin">ici</a></p>
     <form>
         <input class="btn btn-danger" type="button" value="Retour" onclick="history.go(-1)">
     </form>

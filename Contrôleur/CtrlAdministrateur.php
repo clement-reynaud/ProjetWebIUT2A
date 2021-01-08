@@ -37,7 +37,7 @@ class CtrlAdministrateur extends CtrlUtilisateur
                     $this->suppNews();
                     break;
                 default:
-                    $dVueErreur[] = "erreur appel php";
+                    $dVueErreur[] = "erreur appel php (ctrl admin)";
                     require ("../Vue/erreur.php");
             }
         }
@@ -57,24 +57,25 @@ class CtrlAdministrateur extends CtrlUtilisateur
 
     private function addNews()
     {
-        Validation::validate_news($_POST["titre"],$_POST["contenu"]);
 
-        $m=new ModeleNews();
-        $m->addNews($_POST["titre"], $_POST["contenu"]);
-
-
-        $this->pagePrincipale();
+        if(isset($_POST["titre"]) && isset($_POST["contenu"])){
+            $m=new ModeleNews();
+            $m->addNews($_POST["titre"], $_POST["contenu"]);
+            header("location: ../Vue/index.php");
+        }
+        else{
+            $titrepage="Ajout News:";
+            require ("ajoutNews.php");
+        }
     }
 
     private function suppNews()
     {
-        $m=new ModeleNews();
-        $m->suppNews($_POST["id"]);
-        print("News supprimée");
-    }
-    private function login()
-    {
-        require ("login.php");
+        $mn=new ModeleNews();
+        $mc=new ModeleCommentaire();
+        $mc->suppCommentaireByNewsId($_REQUEST["newsid"]);
+        $mn->suppNews($_REQUEST["newsid"]);
+        header("location: ../Vue/index.php");
     }
 
      function pageAddNews()
@@ -95,7 +96,7 @@ class CtrlAdministrateur extends CtrlUtilisateur
         $nbNews = $m->getNbNews();
         $news = $m->getNews();
 
-        require ("../Vue/test.php");
+        require("../Vue/PagePrincipale.php");
     }
 
 }

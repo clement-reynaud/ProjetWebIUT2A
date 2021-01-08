@@ -3,6 +3,8 @@
 require_once("../Contrôleur/CtrlUtilisateur.php");
 require_once ("../Contrôleur/CtrlAdministrateur.php");
 require_once ("../Contrôleur/CtrlVisiteur.php");
+require_once ("../Modèle/ModeleAdmin.php");
+require_once ("../Modèle/ModeleUtilisateur.php");
 
 class FrontController
 {
@@ -10,6 +12,9 @@ class FrontController
     private $actionUti = ["add_comm","deconnexion","supp_comm"];
 
     public function __construct(){
+
+        $ma = new ModeleAdmin();
+        $mu = new ModeleUtilisateur();
 
         if(isset($_REQUEST['action'])){
             $action=$_REQUEST['action'];
@@ -19,7 +24,6 @@ class FrontController
         }
 
         if(in_array($action,$this->actionAdmin)){
-
             $ctrl = new CtrlAdministrateur();
         }
         elseif(in_array($action,$this->actionUti)){

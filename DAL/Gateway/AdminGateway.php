@@ -45,7 +45,27 @@ class AdminGateway
         }
     }
 
-    public function addUtilisateur(string $pseudo, string $mdp){
+    public function verifyConnexion(string $pseudo, string $mdp) : bool{
+        $query="SELECT * FROM `admin` WHERE :pseudo=pseudo ";
+        $this->con->executeQuery($query, array(
+            ':pseudo'=>array($pseudo, PDO::PARAM_STR),
+        ));
+
+        $res = $this->con->getResults();
+
+        if(!isset($res[0])){
+            return false;
+        }
+
+        if(password_verify($mdp,$res[0]["mdp"])){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function addAdmin(string $pseudo, string $mdp){
         $query="INSERT INTO `admin` (`pseudo`, `mdp`) VALUES (:pseudo,:mdp)";
         $this->con->executeQuery($query,array(
             ':pseudo'=>array($pseudo,PDO::PARAM_STR),
@@ -62,6 +82,6 @@ class AdminGateway
 
         $u = $this->con->getResults()[0];
 
-        return new Utilisateur($u["id"],$u["pseudo"]);
+        return new Utilisateur($u["id"],$u["pseudo"],"Admin");
     }
 }

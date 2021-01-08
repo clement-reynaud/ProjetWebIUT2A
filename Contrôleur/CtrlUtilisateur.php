@@ -7,7 +7,7 @@ require_once("../config/Validation.php");
 
 class CtrlUtilisateur
 {
-    private $pagePrincipale = "../Vue/test.php";
+    private $pagePrincipale = "../Vue/PagePrincipale.php";
 
     function __construct(){
         try{
@@ -33,7 +33,7 @@ class CtrlUtilisateur
                     $this->suppCommentaire();
                     break;
                 default:
-                    $dVueErreur[] = "erreur appel php";
+                    $dVueErreur[] = "erreur appel php (crtl utilisateur)";
                     require ("../Vue/erreur.php");
             }
         }
@@ -62,13 +62,11 @@ class CtrlUtilisateur
         $nbNews = $m->getNbNews();
         $news = $m->getNews();
 
-        require ("../Vue/test.php");
+        require("../Vue/PagePrincipale.php");
     }
 
     function addCommentaire(){
         $m=new ModeleCommentaire();
-
-        Validation::validate_comm($_POST["contenu"]);
 
         $m->addCommentaire($_SESSION["id"], $_POST["newsid"], $_POST["contenu"]);
         CtrlVisiteur::voirCommentaire();
@@ -79,7 +77,10 @@ class CtrlUtilisateur
     {
         unset($_SESSION["pseudo"]);
         unset($_SESSION["id"]);
+        unset($_SESSION["role"]);
+        session_unset();
         session_destroy();
+        $_SESSION = array();
 
         $this->pagePrincipale();
     }

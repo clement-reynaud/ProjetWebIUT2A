@@ -3,6 +3,7 @@
 require_once ("../Modèle/ModeleNews.php");
 require_once ("../Modèle/ModeleUtilisateur.php");
 require_once ("../Modèle/ModeleCommentaire.php");
+require_once ("../Modèle/ModeleAdmin.php");
 require_once("../config/Validation.php");
 
 class CtrlVisiteur
@@ -27,14 +28,20 @@ class CtrlVisiteur
                 case "login":
                     $this->login();
                     break;
+                case "login_admin":
+                    $this->loginAdmin();
+                    break;
                 case "add_utilisateur":
                     $this->addUtilisateur();
+                    break;
+                case "add_admin":
+                    $this->addAdmin();
                     break;
                 case "voir_commentaire":
                     $this->voirCommentaire();
                     break;
                 default:
-                    $dVueErreur[] = "erreur appel php";
+                    $dVueErreur[] = "erreur appel php (ctrl visiteur)";
                     require ("../Vue/erreur.php");
             }
         }
@@ -62,8 +69,10 @@ class CtrlVisiteur
         $titrepage = "Toutes les news:";
         $nbNews = $m->getNbNews();
         $news = $m->getNews();
-        $cookie=$_COOKIE[$_SESSION["pseudo"]."nbCom"];
-        require ("../Vue/test.php");
+        if(isset($_SESSION["pseudo"]) && isset($_COOKIE[$_SESSION["pseudo"]."nbCom"])){
+            $cookie=$_COOKIE[$_SESSION["pseudo"]."nbCom"];
+        }
+        require("../Vue/PagePrincipale.php");
     }
 
     function rechDate(){
@@ -81,7 +90,7 @@ class CtrlVisiteur
             $nbNews = $m->getNbNews();
             $news = $m->getNewsAtDate($date);
 
-            require ("../Vue/test.php");
+            require("../Vue/PagePrincipale.php");
         }
         else{
             $dVueErreur[] = "erreur date";
@@ -99,7 +108,19 @@ class CtrlVisiteur
             $titrepage = "Creation de compte:";
             require ("../Vue/creationCompte.php");
         }
+    }
 
+    function addAdmin(){
+        if(isset($_POST["pseudo"]) && isset($_POST["mdp"])){
+            $m = new ModeleAdmin();
+            $m->addAdmin($_POST["pseudo"],$_POST["mdp"],$_POST["confirm_mdp"]);
+            header("location: ../Vue/index.php");
+            print "<h1> ADMIN CREE </h1>";
+        }
+        else{
+            $titrepage = "Creation de compte Admin:";
+            require ("../Vue/creationCompte.php");
+        }
     }
 
     private function login()
@@ -112,6 +133,19 @@ class CtrlVisiteur
         else{
             $titrepage="Connexion:";
             require ("login.php");
+        }
+    }
+
+    private function loginAdmin()
+    {
+        if(isset($_POST["pseudo"]) && isset($_POST["mdp"])){
+            $m = new ModeleAdmin();
+            $m->connexionAdmin($_REQUEST["pseudo"],$_REQUEST["mdp"]);
+            header("location: ../Vue/index.php");
+        }
+        else{
+            $titrepage="Connexion Admin:";
+            require ("loginAdmin.php");
         }
     }
 
@@ -131,7 +165,7 @@ class CtrlVisiteur
         $comm = $m2->getComm($n->getId());
 
 
-        require ("../Vue/test.php");
+        require("../Vue/PagePrincipale.php");
 
     }
 }

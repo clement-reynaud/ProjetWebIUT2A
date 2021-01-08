@@ -33,14 +33,14 @@ class ModeleUtilisateur{
             $dVueErreur[] = "Confirmation mot de passe invalide.";
         }
 
-        if ($pseudo == "" || !isset($pseudo)) {
+        if (Validation::is_string_null($pseudo)) {
             $dVueErreur[] = "Veuillez entrer un pseudo.";
         }
         if(!Validation::validate_string($pseudo)){
             $dVueErreur[] = "Login erroné";
         }
 
-        if ($mdp == "" || !isset($mdp)) {
+        if (Validation::is_string_null($mdp)) {
             $dVueErreur[] = "Veuillez insérer votre mot de passe.";
         }
 
@@ -90,14 +90,14 @@ class ModeleUtilisateur{
     }
 
     public function connexionUtilisateur($pseudo,$mdp){
-        if ($pseudo == "" || !isset($pseudo)) {
+        if (Validation::is_string_null($pseudo)) {
             $dVueErreur[] = "Veuillez entrer un pseudo.";
         }
         if(!Validation::validate_string($pseudo)){
             $dVueErreur[] = "Login erroné";
         }
 
-        if ($mdp == "" || !isset($mdp)) {
+        if (Validation::is_string_null($mdp)) {
             $dVueErreur[] = "Veuillez entrer un mot de passe.";
         }
         if(!Validation::validate_string($mdp)) {
@@ -117,6 +117,13 @@ class ModeleUtilisateur{
         $_SESSION["role"] = "Utilisateur";
         $_SESSION["pseudo"] = $u->getPseudo();
         $_SESSION["id"] = $u->getId();
+    }
+
+    function isUtilisateur() : bool{
+        if(isset($_SESSION['login']) && isset($_SESSION['role']) && $_SESSION['role'] == "Utilisateur"){
+            return true;
+        }
+        return false;
     }
 
 }

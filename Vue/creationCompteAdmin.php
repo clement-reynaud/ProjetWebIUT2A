@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Connexion :</title>
+    <title>Creation de Compte Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body style="padding-top: 55px;">
+<body style="padding-top: 55px">
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="index.php">Accueil</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -59,26 +59,29 @@
     </div>
 </nav>
 <main class="container-fluid">
-    <form class="form-group" action="index.php" method="post">
-        <div class="mt-2">
-            <label>Login</label>
+    <form class="form-group mt-1" action="index.php" method="post">
+        <div>
+            <label>Pseudo</label>
             <input class="form-control" type="text" name="pseudo">
         </div>
         <div>
             <label>Mot De Passe</label>
             <input class="form-control" type="password" name="mdp">
         </div>
+        <div>
+            <label>Confirmer Mot De Passe</label>
+            <input class="form-control" type="password" name="confirm_mdp">
+        </div>
         <div class="mt-2">
-            <input class="btn btn-primary mr-3" type="submit" value="Connexion">
+            <input class="btn btn-primary mr-3" type="submit" value="S'enregistrer">
             <input class="btn btn-warning" type="reset" value="Reset">
         </div>
-        <input type="hidden" name="action" value="login">
+
+        <input type="hidden" name="action" value="add_admin">
+        <input class="btn btn-danger mt-2   " type="button" value="Retour" onclick="history.go(-1)">
+
     </form>
-    <p>Pas de compte, créer en un <a href="index.php?action=add_utilisateur">ici</a></p>
-    <p>Admin ? Connectez vous <a href="index.php?action=login_admin">ici</a></p>
-    <form>
-        <input class="btn btn-danger" type="button" value="Retour" onclick="history.go(-1)">
-    </form>
+
 </main>
 </body>
 </html>
