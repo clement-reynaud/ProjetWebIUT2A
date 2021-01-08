@@ -101,7 +101,7 @@ class ModeleUtilisateur{
     }
 
     function isUtilisateur() : bool{
-        if(isset($_SESSION['login']) && isset($_SESSION['role']) && $_SESSION['role'] == "Utilisateur"){
+        if(isset($_SESSION['role']) && $_SESSION['role'] == "Utilisateur"){
             return true;
         }
         return false;

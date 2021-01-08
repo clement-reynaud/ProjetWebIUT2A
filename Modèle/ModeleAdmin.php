@@ -90,7 +90,7 @@ class ModeleAdmin
     }
 
     function isAdmin() : bool{
-        if(isset($_SESSION['login']) && isset($_SESSION['role']) && $_SESSION['role'] == "Admin"){
+        if(isset($_SESSION['role']) && $_SESSION['role'] == "Admin"){
             return true;
         }
         return false;
